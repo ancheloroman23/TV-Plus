@@ -1,0 +1,65 @@
+﻿@model List<Application.ViewModels.SerieViewModel>
+
+@{
+    ViewData["Title"] = "Series";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Serie" asp-action="Create" class="btn btn-outline-success">Crear una nueva Serie</a>
+        </div>
+    </div>
+
+    <div class="row">
+
+        @if (Model == null || Model.Count == 0)
+        {
+                <h2>
+                    No hay series agregadas
+                </h2>
+        }
+        else
+        {
+            @foreach (Application.ViewModels.SerieViewModel item in Model)
+            {
+            <div class="col-4">
+                <div class="card shadow-sm">
+                    <img class="bd-placeholder-img card-img-top" src="@item.UrlPortada" />
+
+                    <div class="card-body">
+                        <h4>
+                            @item.Nombre
+                        </h4>
+                            <p class="card-text">@item.Descripcion</p>
+                        <div>
+                            <small class="fw-bold fs-6"> @item.GeneroPrimario</small>
+                            <br />
+                            <small class="fw-bold fs-6"> @item.GeneroSecundario</small>
+                            <br/>
+                            <small class="fw-bold fs-6"> @item.NombreProductora</small>
+
+                            <td>
+                               @*  <form asp-controller="Serie" asp-action="Edit" method="post">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-info">Editar</button>
+                                </form> *@
+                                <br/>
+                                <form asp-controller="Serie" asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>                                                      
+                                
+                            </td>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            }
+        }                     
+    </div>
+</div>

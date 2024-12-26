@@ -1,0 +1,87 @@
+﻿@using Application.ViewModels
+@model SaveSerieViewModel
+
+@{
+    ViewData["Title"] = "Editar Serie";
+}
+
+
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h4>Editar Serie</h4>
+                </div>
+                <div class="card-body">
+
+                    <form method="post" asp-controller="Serie" asp-action="Edit">
+                        
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre:</label>
+                            <input type="text" asp-for="Nombre" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Descripcion" class="form-label">Descripcion:</label>
+                            <textarea asp-for="Descripcion" class="form-control"></textarea>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="UrlPortada" class="form-label">Url Portada:</label>
+                            <input type="text" asp-for="UrlPortada" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="UrlVideo" class="form-label">Url Video:</label>
+                            <input type="text" asp-for="UrlVideo" class="form-control" />
+                        </div>
+
+
+                       
+                        <div class="mb-3">
+                            <label asp-for="NombreProductora" class="form-label">Productora:</label>
+                            <select asp-for="NombreProductora" class="form-select">
+                                @foreach (var productora in Model.ProductoraOpciones)
+                                {
+                                        <option value="@productora.Id">@productora.Nombre</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="GeneroPrimario" class="form-label">Genero Primario:</label>
+                            <select asp-for="GeneroPrimario" class="form-select">
+                                @foreach (var genero in Model.GeneroOpciones)
+                                {
+                                    <option value="@genero.Id">@genero.Nombre</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="GeneroSecundario" class="form-label">Genero Secundario:</label>
+                            <select asp-for="GeneroSecundario" class="form-select">
+                                @foreach (var genero in Model.GeneroOpciones)
+                                {
+                                    <option value="@genero.Id">@genero.Nombre</option>
+                                }
+                            </select>
+                        </div> 
+
+                        <input type="hidden" asp-for="Id" />
+                        
+                                                
+
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-controller="Serie" asp-action="Index" class="btn btn-warning">Volver atras</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

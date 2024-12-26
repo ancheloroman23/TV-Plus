@@ -1,0 +1,43 @@
+﻿@using Application.ViewModels
+@model SerieViewModel
+
+@{
+    ViewData["Title"] = "Reproduciendo Serie";
+}
+
+
+<div class="text-center">
+    @if (!string.IsNullOrEmpty(Model.UrlVideo))
+    {
+        var urlVideo = GetIdFromYoutubeUrl(Model.UrlVideo);
+        if (!string.IsNullOrEmpty(urlVideo))
+        {
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/@urlVideo?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com" 
+                                frameborder="0" allowfullscreen>
+                            </iframe>
+                            </div>
+        }
+        else
+        {
+                            <p>No se pudo cargar el video.</p>
+        }
+    }
+    else
+    {
+                <p>No se proporcionó ningún enlace de video.</p>
+    }
+</div>
+
+@functions {
+    public string GetIdFromYoutubeUrl(string Url)
+    {
+        if (string.IsNullOrEmpty(Url))
+        {
+            return null;
+        }
+        var uri = new Uri(Url);
+        var queryString = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        return queryString["v"];
+    }
+}

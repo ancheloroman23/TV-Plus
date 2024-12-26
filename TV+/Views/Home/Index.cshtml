@@ -1,0 +1,44 @@
+﻿@model List<Application.ViewModels.SerieViewModel>
+
+@{
+    ViewData["Title"] = "Detalle Serie";
+}
+
+
+<div class="container-fluid">    
+
+    <div class="row">
+
+        @if (Model == null || Model.Count == 0)
+        {
+                <h2>
+                    No hay series agregadas
+                </h2>
+        }
+        else
+        {
+            @foreach (Application.ViewModels.SerieViewModel item in Model)
+            {
+                        <div class="col-4">
+                            <div class="card shadow-sm">
+                                <img class="bd-placeholder-img card-img-top" src="@item.UrlPortada" />
+
+                                <div class="card-body">
+                                    <h4>
+                                @item.Nombre
+                                    </h4>
+                                    <p class="card-text">@item.Descripcion</p>
+                                    <div>
+                                        <small class="fw-bold fs-6"> @item.GeneroPrimario</small>
+                                        <br />
+                                        <small class="fw-bold fs-6"> @item.GeneroSecundario</small>
+                                        <br/>
+                                        <small class="fw-bold fs-6"> @item.NombreProductora</small>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </div>
+            }
+        }                    
+    </div>
+</div>

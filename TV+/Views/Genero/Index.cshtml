@@ -1,0 +1,52 @@
+﻿@model List<Application.ViewModels.GeneroViewModel>
+
+@{
+    ViewData["Title"] = "Genero";
+}
+
+<div class="container-fluid">
+    
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Genero" asp-action="Create" class="btn btn-outline-success">Crear un nuevo Genero</a>
+        </div>
+    </div>
+    
+    <h1>Listado de Generos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var genero in Model)
+            {
+                <tr>
+                    <td>@genero.Id</td>
+                    <td>@genero.Nombre</td>
+                    <td>
+                        <form asp-controller="Genero" asp-action="Edit" method="post">
+                                <input type="hidden" name="id" value="@genero.Id" />
+                                <button type="submit" class="btn btn-info">Editar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-controller="Genero" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@genero.Id" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+ 

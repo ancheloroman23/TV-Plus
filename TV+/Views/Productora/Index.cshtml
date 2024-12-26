@@ -1,0 +1,54 @@
+﻿@using Application.ViewModels;
+@model List<ProductoraViewModel>
+
+@{
+    ViewData["Title"] = "Productora";
+}
+
+<div class="container-fluid">
+    
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Productora" asp-action="Create" class="btn btn-outline-success">Crear una nueva Productora</a>
+        </div>
+    </div>
+    
+    <h1>Listado de Productoras</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var productora in Model)
+            {
+                <tr>
+                    <td>@productora.Id</td>
+                    <td>@productora.Nombre</td>
+                    <td>                        
+                        <form asp-controller="Productora" asp-action="Edit" method="post">
+                                <input type="hidden" name="id" value="@productora.Id" />
+                                <button type="submit" class="btn btn-info">Editar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-controller="Productora" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@productora.Id" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
